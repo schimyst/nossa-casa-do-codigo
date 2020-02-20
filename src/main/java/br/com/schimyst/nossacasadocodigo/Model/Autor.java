@@ -8,10 +8,10 @@ public class Autor {
 
     private String nome;
     private String email;
-    private LocalDateTime horaRegistro;
+    private LocalDateTime horaRegistro = LocalDateTime.now();
     private String descricao;
 
-    public Autor(String nome, String email, LocalDateTime horaRegistro, String descricao) {
+    public Autor(String nome, String email, String descricao) {
         if (nome.isEmpty()) {
             throw new IllegalArgumentException("O nome do autor não pode ser vazio!");
         }
@@ -20,9 +20,6 @@ public class Autor {
         }
         else if (validaFormatoEmail(email) == false) {
             throw new IllegalArgumentException("O email não está no formato correto!");
-        }
-        else if (horaRegistro == null) {
-            throw new NullPointerException("O autor deve ter uma data e hora de registro!");
         }
         else if (descricao.isEmpty()) {
             throw new IllegalArgumentException("A descrição do autor é obrigatória!");
@@ -33,11 +30,10 @@ public class Autor {
 
         this.nome = nome;
         this.email = email;
-        this.horaRegistro = horaRegistro;
         this.descricao = descricao;
     }
 
-    public boolean validaFormatoEmail(String email) {
+    private boolean validaFormatoEmail(String email) {
         String emailRegex = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
         Pattern molde = Pattern.compile(emailRegex);
         Matcher matcher = molde.matcher(email);

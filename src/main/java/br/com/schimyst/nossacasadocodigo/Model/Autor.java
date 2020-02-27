@@ -1,7 +1,7 @@
 package br.com.schimyst.nossacasadocodigo.Model;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,7 +49,18 @@ public class Autor {
         return true;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Autor autor = (Autor) o;
+        return email.equals(autor.email);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
+    }
 
     @Override
     public String toString() {

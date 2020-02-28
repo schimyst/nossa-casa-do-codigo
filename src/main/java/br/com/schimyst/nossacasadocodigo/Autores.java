@@ -13,12 +13,9 @@ public class Autores {
         return autores;
     }
 
-    public Autores() {
-    }
-
-    private boolean verificaEmailDuplicado(String email) {
+    private boolean verificaEmailDuplicado(Autor novoAutor) {
         for (Autor autor: autores) {
-            if (autor.getEmail().equals(email)) {
+            if (novoAutor.equals(autor)) {
                 return false;
             }
         }
@@ -26,7 +23,7 @@ public class Autores {
     }
 
     public void adiciona(Autor autor) {
-        if(verificaEmailDuplicado(autor.getEmail())) {
+        if(verificaEmailDuplicado(autor)) {
             autores.add(autor);
         } else {
             throw new IllegalArgumentException("O email já existe na lista");

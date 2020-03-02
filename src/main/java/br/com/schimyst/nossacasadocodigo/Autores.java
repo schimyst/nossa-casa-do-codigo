@@ -2,22 +2,20 @@ package br.com.schimyst.nossacasadocodigo;
 
 import br.com.schimyst.nossacasadocodigo.Model.Autor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Autores {
 
-    private List<Autor> autores = new ArrayList<>();
+    private Set<Autor> autores = new HashSet<>();
 
-    public List<Autor> getAutores() {
+    public Set<Autor> getAutores() {
         return autores;
     }
 
     private boolean verificaEmailDuplicado(Autor novoAutor) {
-        for (Autor autor: autores) {
-            if (novoAutor.equals(autor)) {
-                return false;
-            }
+        if(autores.contains(novoAutor)) {
+            return false;
         }
         return true;
     }

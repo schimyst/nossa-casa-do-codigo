@@ -13,15 +13,8 @@ public class Autores {
         return autores;
     }
 
-    private boolean verificaEmailDuplicado(Autor novoAutor) {
-        if(autores.contains(novoAutor)) {
-            return false;
-        }
-        return true;
-    }
-
     public void adiciona(Autor autor) {
-        if(verificaEmailDuplicado(autor)) {
+        if(!autores.contains(autor)) {
             autores.add(autor);
         } else {
             throw new IllegalArgumentException("O email já existe na lista");

@@ -5,7 +5,7 @@ import br.com.schimyst.nossacasadocodigo.Model.Autor;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Autores {
+public class Autores implements LogicaAutor{
 
     private Set<Autor> autores = new HashSet<>();
 

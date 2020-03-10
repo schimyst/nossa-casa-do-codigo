@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class TestaAutor {
 
-    Autores autores = new Autores();
+    private Autores autores = new Autores();
 
     @Test
     public void deveAceitarAutor() {

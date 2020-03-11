@@ -1,4 +1,4 @@
-package br.com.schimyst.nossacasadocodigo.Mains;
+package br.com.schimyst.nossacasadocodigo.Mains.Autores;
 
 import br.com.schimyst.nossacasadocodigo.Model.Autor;
 

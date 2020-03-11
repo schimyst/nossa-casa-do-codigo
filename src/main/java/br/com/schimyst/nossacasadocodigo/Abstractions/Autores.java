@@ -1,4 +1,4 @@
-package br.com.schimyst.nossacasadocodigo;
+package br.com.schimyst.nossacasadocodigo.Abstractions;
 
 import br.com.schimyst.nossacasadocodigo.Model.Autor;
 

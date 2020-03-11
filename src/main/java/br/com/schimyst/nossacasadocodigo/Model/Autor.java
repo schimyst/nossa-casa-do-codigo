@@ -19,7 +19,7 @@ public class Autor {
         else if (email.isEmpty()) {
            throw new IllegalArgumentException("O email do autor não pode ser vazio!");
         }
-        else if (validaFormatoEmail(email) == false) {
+        else if (!validaFormatoEmail(email)) {
             throw new IllegalArgumentException("O email não está no formato correto!");
         }
         else if (descricao.isEmpty()) {

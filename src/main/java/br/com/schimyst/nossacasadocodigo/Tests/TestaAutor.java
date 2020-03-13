@@ -1,6 +1,6 @@
 package br.com.schimyst.nossacasadocodigo.Tests;
 
-import br.com.schimyst.nossacasadocodigo.Autores;
+import br.com.schimyst.nossacasadocodigo.Abstractions.Autores;
 import br.com.schimyst.nossacasadocodigo.Model.Autor;
 import org.junit.Test;
 

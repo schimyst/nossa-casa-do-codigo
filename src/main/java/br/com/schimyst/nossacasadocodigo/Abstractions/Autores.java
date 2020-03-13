@@ -1,4 +1,4 @@
-package br.com.schimyst.nossacasadocodigo;
+package br.com.schimyst.nossacasadocodigo.Abstractions;
 
 import br.com.schimyst.nossacasadocodigo.Model.Autor;
 
@@ -17,7 +17,7 @@ public class Autores {
         if(!autores.contains(autor)) {
             autores.add(autor);
         } else {
-            throw new IllegalArgumentException("O email já existe na lista");
+            throw new IllegalArgumentException("O email já existe na lista de autores!");
         }
     }
 }

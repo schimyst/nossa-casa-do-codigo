@@ -9,15 +9,16 @@ import java.util.regex.Pattern;
 public class Livro {
 
     private String titulo;
+    private double preco;
     private String resumo;
     private String sumario;
-    private double preco;
+    private Autor autor;
     private int numeroPags;
     private String isbn;
     private LocalDate dataPublicacao;
     private Categoria categoria;
 
-    public Livro(String titulo, String resumo, String sumario, double preco, int numeroPags, String isbn, LocalDate dataPublicacao, Categoria categoria) {
+    public Livro(String titulo, double preco, String resumo, String sumario, Autor autor, int numeroPags, String isbn, LocalDate dataPublicacao, Categoria categoria) {
         if (titulo.isEmpty()) {
             throw new IllegalArgumentException("O título do livro não pode ser vazio!");
         }
@@ -42,15 +43,23 @@ public class Livro {
         else if (categoria == null) {
             throw new IllegalArgumentException("A categoria do livro é obrigatória!");
         }
+        else if (autor == null) {
+            throw new IllegalArgumentException("O autor(a) do livro não pode ser nulo(a)!");
+        }
 
         this.titulo = titulo;
+        this.preco = preco;
         this.resumo = resumo;
         this.sumario = sumario;
-        this.preco = preco;
+        this.autor = autor;
         this.numeroPags = numeroPags;
         this.isbn = isbn;
         this.dataPublicacao = dataPublicacao;
         this.categoria = categoria;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 
     private boolean validaIsbn(String isbn) {
@@ -89,6 +98,7 @@ public class Livro {
                 ", isbn='" + isbn + '\'' +
                 ", dataPublicacao=" + dataPublicacao +
                 ", categoria=" + categoria +
+                ", autor=" + autor +
                 '}';
     }
 }

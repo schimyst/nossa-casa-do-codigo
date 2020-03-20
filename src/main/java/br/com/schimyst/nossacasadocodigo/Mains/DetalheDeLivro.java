@@ -6,7 +6,6 @@ import br.com.schimyst.nossacasadocodigo.Model.Categoria;
 import br.com.schimyst.nossacasadocodigo.Model.Livro;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 public class DetalheDeLivro {
 
@@ -21,15 +20,9 @@ public class DetalheDeLivro {
                 "2.2 Nossa ferramenta\n" +
                 "2.3 Nosso primeiro programa\n" +
                 "2.4 Ajustando os parafusos\n" +
-                "2.5 Próximos passos", fernando,159, "978-85-94120-00-7", LocalDate.parse("2020-12-03"),new Categoria("Programação"));
+                "2.5 Próximos passos", fernando, 159, "978-85-94120-00-7", LocalDate.parse("2020-12-03"), new Categoria("Programação"));
 
         livros.adiciona(springBoot);
-
-        Optional<Livro> optionalLivro = livros.getLivros().stream()
-               .filter(livro -> "Spring Boot - Acelere o desenvolvimento de microsserviços".equals(livro.getTitulo()))
-                .findAny();
-
-        System.out.println(optionalLivro);
+        livros.getLivroByTitulo("Spring Boot - Acelere o desenvolvimento de microsserviços");
     }
-
 }

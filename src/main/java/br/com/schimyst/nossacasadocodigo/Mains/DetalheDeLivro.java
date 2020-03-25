@@ -1,6 +1,7 @@
 package br.com.schimyst.nossacasadocodigo.Mains;
 
 import br.com.schimyst.nossacasadocodigo.Abstractions.Livros;
+import br.com.schimyst.nossacasadocodigo.LivroRepository;
 import br.com.schimyst.nossacasadocodigo.Model.Autor;
 import br.com.schimyst.nossacasadocodigo.Model.Categoria;
 import br.com.schimyst.nossacasadocodigo.Model.Livro;
@@ -22,7 +23,8 @@ public class DetalheDeLivro {
                 "2.4 Ajustando os parafusos\n" +
                 "2.5 Próximos passos", fernando, 159, "978-85-94120-00-7", LocalDate.parse("2020-12-03"), new Categoria("Programação"));
 
+        LivroRepository livroRepository = new LivroRepository(livros);
         livros.adiciona(springBoot);
-        livros.getLivroByTitulo("Spring Boot - Acelere o desenvolvimento de microsserviços");
+        livroRepository.getLivroByTitulo("Spring Boot - Acelere o desenvolvimento de microsserviços");
     }
 }

@@ -25,6 +25,6 @@ public class DetalheDeLivro {
 
         LivroRepository livroRepository = new LivroRepository(livros);
         livros.adiciona(springBoot);
-        livroRepository.getLivroByTitulo("Spring Boot - Acelere o desenvolvimento de microsserviços");
+        System.out.println(livroRepository.getLivroByTitulo("Spring Boot - Acelere o desenvolvimento de microsserviços"));
     }
 }

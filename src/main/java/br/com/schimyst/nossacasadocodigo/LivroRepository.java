@@ -21,7 +21,6 @@ public class LivroRepository {
                 .filter(livro -> titulo.equals(livro.getTitulo()))
                 .findAny();
 
-        System.out.println(optionalLivro);
         return optionalLivro;
     }
 }

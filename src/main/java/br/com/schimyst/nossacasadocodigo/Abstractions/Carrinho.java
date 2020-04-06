@@ -22,9 +22,9 @@ public class Carrinho {
         livrosParaCompra.forEach(livroParaCompra -> {
             if(livroParaCompra.getQuantidade() > 1) {
                 BigDecimal quantidade = BigDecimal.valueOf(livroParaCompra.getQuantidade());
-                total = total.add(livroParaCompra.getLivro().getPreco().multiply(quantidade));
+                total = total.add(livroParaCompra.getLivro().get().getPreco().multiply(quantidade));
             } else {
-                total = total.add(livroParaCompra.getLivro().getPreco());
+                total = total.add(livroParaCompra.getLivro().get().getPreco());
             }
         });
         return total;

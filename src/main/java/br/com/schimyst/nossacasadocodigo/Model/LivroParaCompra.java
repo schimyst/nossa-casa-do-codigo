@@ -1,13 +1,15 @@
 package br.com.schimyst.nossacasadocodigo.Model;
 
+import java.util.Optional;
+
 public class LivroParaCompra {
 
-    private Livro livro;
+    private Optional<Livro> livro;
     private int quantidade;
 
-    public LivroParaCompra(Livro livro, int quantidade) {
-        if(livro == null) {
-            throw new IllegalArgumentException("Você deve passar um livro para compra!");
+    public LivroParaCompra(Optional<Livro> livro, int quantidade) {
+        if(!livro.isPresent()) {
+            throw new IllegalArgumentException("O livro que você passou não existe na lista");
         }
         if(quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade deve ser de no mínimo 1 livro para a compra!");
@@ -16,7 +18,7 @@ public class LivroParaCompra {
         this.quantidade = quantidade;
     }
 
-    public Livro getLivro() {
+    public Optional<Livro> getLivro() {
         return livro;
     }
 

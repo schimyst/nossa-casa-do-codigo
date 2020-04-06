@@ -1,6 +1,8 @@
 package br.com.schimyst.nossacasadocodigo.Mains;
 
 import br.com.schimyst.nossacasadocodigo.Abstractions.Carrinho;
+import br.com.schimyst.nossacasadocodigo.Abstractions.Livros;
+import br.com.schimyst.nossacasadocodigo.LivroRepository;
 import br.com.schimyst.nossacasadocodigo.Model.Autor;
 import br.com.schimyst.nossacasadocodigo.Model.Categoria;
 import br.com.schimyst.nossacasadocodigo.Model.Livro;
@@ -10,12 +12,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CarrinhoMain {
 
     public static void main(String[] args) {
         List<LivroParaCompra> livrosParaComprar = new ArrayList<>();
         Carrinho carrinho = new Carrinho(livrosParaComprar);
+        Livros livros = new Livros();
+        LivroRepository livroRepository = new LivroRepository(livros);
 
         Autor fernando = new Autor("Fernando Boaglio", "fernandoboaglio@caelum.com.br", "Fernando Boaglio, formado pela UNESP em BCC, foi instrutor oficial da Sun Microsystems e da Oracle Education. Atualmente, contribui para alguns projetos open source, como KDE, Jenkins, entre outros. Mantém seu blog em boaglio.com.");
         Autor leonardo = new Autor("Leonardo", "leonardo1schimidt@gmail.com", "hobbit");
@@ -31,8 +36,14 @@ public class CarrinhoMain {
 
         Livro hobbit = new Livro("O Hobbit", new BigDecimal("50"), "bichao eh um monstro pequenino lek", "**sumario**", leonardo, 126,"978-1-4302-1998-9", LocalDate.parse("2020-12-03"), new Categoria("Aventura"));
 
-        LivroParaCompra livroParaCompra1 = new LivroParaCompra(springboot, 1);
-        LivroParaCompra livroParaCompra2 = new LivroParaCompra(hobbit, 10);
+        livros.adiciona(springboot);
+        livros.adiciona(hobbit);
+
+        Optional<Livro> o_hobbit = livroRepository.getLivroByTitulo("O Hobbit");
+        Optional<Livro> spring_boot = livroRepository.getLivroByTitulo("Spring Boot - Acelere o desenvolvimento de microsserviços");
+
+        LivroParaCompra livroParaCompra1 = new LivroParaCompra(spring_boot, 1);
+        LivroParaCompra livroParaCompra2 = new LivroParaCompra(o_hobbit, 10);
 
         carrinho.adicionaNoCarrinho(livroParaCompra1);
         carrinho.adicionaNoCarrinho(livroParaCompra2);
@@ -40,5 +51,4 @@ public class CarrinhoMain {
         System.out.println(carrinho.getLivrosParaCompra());
         System.out.println(carrinho.calculaTotalPagamento(livrosParaComprar));
     }
-
 }

@@ -3,6 +3,7 @@ package br.com.schimyst.nossacasadocodigo.Abstractions;
 import br.com.schimyst.nossacasadocodigo.Model.LivroParaCompra;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Carrinho {
@@ -11,6 +12,7 @@ public class Carrinho {
     private BigDecimal total = BigDecimal.ZERO;
 
     public Carrinho(List<LivroParaCompra> livrosParaCompra) {
+        this.livrosParaCompra = new ArrayList<>();
         this.livrosParaCompra = livrosParaCompra;
     }
 
@@ -23,7 +25,10 @@ public class Carrinho {
             if(livroParaCompra.getQuantidade() > 1) {
                 BigDecimal quantidade = BigDecimal.valueOf(livroParaCompra.getQuantidade());
                 total = total.add(livroParaCompra.getLivro().get().getPreco().multiply(quantidade));
-            } else {
+            } else if(livroParaCompra.getQuantidade() < 1) {
+                throw new IllegalArgumentException("A quantidade do livro para compra deve ser de no mínimo 1 livro!");
+            }
+            else {
                 total = total.add(livroParaCompra.getLivro().get().getPreco());
             }
         });

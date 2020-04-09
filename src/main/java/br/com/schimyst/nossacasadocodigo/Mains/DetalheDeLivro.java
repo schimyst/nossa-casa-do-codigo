@@ -6,6 +6,7 @@ import br.com.schimyst.nossacasadocodigo.Model.Autor;
 import br.com.schimyst.nossacasadocodigo.Model.Categoria;
 import br.com.schimyst.nossacasadocodigo.Model.Livro;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class DetalheDeLivro {
@@ -13,7 +14,7 @@ public class DetalheDeLivro {
     public static void main(String[] args) {
         Livros livros = new Livros();
         Autor fernando = new Autor("Fernando Boaglio", "fernandoboaglio@caelum.com.br", "Fernando Boaglio, formado pela UNESP em BCC, foi instrutor oficial da Sun Microsystems e da Oracle Education. Atualmente, contribui para alguns projetos open source, como KDE, Jenkins, entre outros. Mantém seu blog em boaglio.com.");
-        Livro springBoot = new Livro("Spring Boot - Acelere o desenvolvimento de microsserviços", 29.90, "Spring Boot é uma maneira eficiente e eficaz de criar uma aplicação em Spring e facilmente colocá-la no ar, funcionando sem depender de um servidor de aplicação. Não se trata de um simples framework, mas de um conceito totalmente novo de criar aplicações web. Além de impulsionar o desenvolvimento para microsserviços, o Spring Boot ajuda na configuração importando e configurando automaticamente todas as dependências.", "1 Tendências do mercado\n" +
+        Livro springBoot = new Livro("Spring Boot - Acelere o desenvolvimento de microsserviços", new BigDecimal("29.90"), "Spring Boot é uma maneira eficiente e eficaz de criar uma aplicação em Spring e facilmente colocá-la no ar, funcionando sem depender de um servidor de aplicação. Não se trata de um simples framework, mas de um conceito totalmente novo de criar aplicações web. Além de impulsionar o desenvolvimento para microsserviços, o Spring Boot ajuda na configuração importando e configurando automaticamente todas as dependências.", "1 Tendências do mercado\n" +
                 "1.1 A evolução dos serviços\n" +
                 "1.2 Como surgiu o Spring Boot\n" +
                 "2 Conhecendo o Spring Boot\n" +

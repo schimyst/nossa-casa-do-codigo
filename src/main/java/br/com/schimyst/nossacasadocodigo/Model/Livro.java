@@ -1,5 +1,6 @@
 package br.com.schimyst.nossacasadocodigo.Model;
 
+import java.math.BigDecimal;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -9,7 +10,7 @@ import java.util.regex.Pattern;
 public class Livro {
 
     private String titulo;
-    private double preco;
+    private BigDecimal preco;
     private String resumo;
     private String sumario;
     private Autor autor;
@@ -18,14 +19,14 @@ public class Livro {
     private LocalDate dataPublicacao;
     private Categoria categoria;
 
-    public Livro(String titulo, double preco, String resumo, String sumario, Autor autor, int numeroPags, String isbn, LocalDate dataPublicacao, Categoria categoria) {
+    public Livro(String titulo, BigDecimal preco, String resumo, String sumario, Autor autor, int numeroPags, String isbn, LocalDate dataPublicacao, Categoria categoria) {
         if (titulo.isEmpty()) {
             throw new IllegalArgumentException("O título do livro não pode ser vazio!");
         }
         else if (resumo.isEmpty() || resumo.length() > 500) {
             throw new IllegalArgumentException("O resumo do livro não pode ser vazio e deve conter no máximo 500 caracteres");
         }
-        else if (preco < 20) {
+        else if (preco.compareTo(new BigDecimal("20")) < 0) {
             throw new IllegalArgumentException("O preço do livro é obrigatório e deve ser de no mínimo R$20!");
         }
         else if (numeroPags < 100) {
@@ -60,6 +61,10 @@ public class Livro {
 
     public String getTitulo() {
         return titulo;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
     }
 
     private boolean validaIsbn(String isbn) {

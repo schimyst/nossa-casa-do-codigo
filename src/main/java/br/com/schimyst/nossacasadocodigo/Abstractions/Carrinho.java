@@ -3,39 +3,37 @@ package br.com.schimyst.nossacasadocodigo.Abstractions;
 import br.com.schimyst.nossacasadocodigo.Model.LivroParaCompra;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Carrinho {
 
-    private List<LivroParaCompra> livrosParaCompra;
+    private Map<String, LivroParaCompra> livroParaCompraMap = new HashMap<>();
     private BigDecimal total = BigDecimal.ZERO;
 
-    public Carrinho(List<LivroParaCompra> livrosParaCompra) {
-        this.livrosParaCompra = new ArrayList<>();
-        this.livrosParaCompra = livrosParaCompra;
+    public Carrinho() {
     }
 
-    public List<LivroParaCompra> getLivrosParaCompra() {
-        return livrosParaCompra;
+    public Map<String, LivroParaCompra> getLivroParaCompraMap() {
+        return livroParaCompraMap;
     }
 
-    public BigDecimal calculaTotalPagamento(List<LivroParaCompra> livrosParaCompra) {
-        livrosParaCompra.forEach(livroParaCompra -> {
-            if(livroParaCompra.getQuantidade() > 1) {
-                BigDecimal quantidade = BigDecimal.valueOf(livroParaCompra.getQuantidade());
-                total = total.add(livroParaCompra.getLivro().get().getPreco().multiply(quantidade));
-            } else if(livroParaCompra.getQuantidade() < 1) {
+    public BigDecimal calculaTotalPagamento() {
+        for(Map.Entry<String, LivroParaCompra> livroParaCompraEntry : livroParaCompraMap.entrySet()) {
+            if(livroParaCompraEntry.getValue().getQuantidade() > 1) {
+                BigDecimal quantidade = BigDecimal.valueOf(livroParaCompraEntry.getValue().getQuantidade());
+                total = total.add(livroParaCompraEntry.getValue().getLivro().get().getPreco().multiply(quantidade));
+            } else if(livroParaCompraEntry.getValue().getQuantidade() < 1) {
                 throw new IllegalArgumentException("A quantidade do livro para compra deve ser de no mínimo 1 livro!");
             }
             else {
-                total = total.add(livroParaCompra.getLivro().get().getPreco());
+                total = total.add(livroParaCompraEntry.getValue().getLivro().get().getPreco());
             }
-        });
+        }
         return total;
     }
 
-    public void adicionaNoCarrinho(LivroParaCompra livro) {
-        livrosParaCompra.add(livro);
+    public void adicionaNoCarrinho(LivroParaCompra livroParaCompra) {
+        livroParaCompraMap.put(livroParaCompra.getLivro().get().getTitulo(), livroParaCompra);
     }
 }

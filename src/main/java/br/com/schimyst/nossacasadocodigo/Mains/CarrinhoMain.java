@@ -18,7 +18,7 @@ public class CarrinhoMain {
 
     public static void main(String[] args) {
         List<LivroParaCompra> livrosParaComprar = new ArrayList<>();
-        Carrinho carrinho = new Carrinho(livrosParaComprar);
+        Carrinho carrinho = new Carrinho();
         Livros livros = new Livros();
         LivroRepository livroRepository = new LivroRepository(livros);
 
@@ -43,7 +43,7 @@ public class CarrinhoMain {
         carrinho.adicionaNoCarrinho(livroParaCompra2);
         carrinho.adicionaNoCarrinho(livroParaCompra3);
 
-        System.out.println(carrinho.getLivrosParaCompra());
-        System.out.println(carrinho.calculaTotalPagamento(livrosParaComprar));
+        System.out.println(carrinho.getLivroParaCompraMap());
+        System.out.println(carrinho.calculaTotalPagamento());
     }
 }

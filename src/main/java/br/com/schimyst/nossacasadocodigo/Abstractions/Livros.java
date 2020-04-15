@@ -18,7 +18,7 @@ public class Livros {
         if(!livros.contains(livro)) {
             livros.add(livro);
         } else {
-            throw new IllegalArgumentException("O email já existe na lista de autores!");
+            throw new IllegalArgumentException("O livro já existe na lista de livros!");
         }
     }
 }

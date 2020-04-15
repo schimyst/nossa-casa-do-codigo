@@ -1,5 +1,6 @@
 package br.com.schimyst.nossacasadocodigo.Model;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class LivroParaCompra {
@@ -24,6 +25,23 @@ public class LivroParaCompra {
 
     public int getQuantidade() {
         return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LivroParaCompra that = (LivroParaCompra) o;
+        return livro.equals(that.livro);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(livro);
     }
 
     @Override

@@ -35,17 +35,18 @@ public class Carrinho {
     }
 
     public void adicionaNoCarrinho(LivroParaCompra livroParaCompra) {
-        for(Map.Entry<String, LivroParaCompra> livroParaCompraEntry : livroParaCompraMap.entrySet()) {
+        if(livroParaCompra.getLivro().isPresent()) {
+            for(Map.Entry<String, LivroParaCompra> livroParaCompraEntry : livroParaCompraMap.entrySet()) {
                 if(livroParaCompraMap.containsKey(livroParaCompra.getLivro().get().getTitulo())) {
                     int quantidade = livroParaCompra.getQuantidade();
                     if(livroParaCompra.equals(livroParaCompraEntry.getValue())) {
                         int quantidadeAtualizada = livroParaCompraEntry.getValue().getQuantidade() + quantidade;
                         livroParaCompra.setQuantidade(quantidadeAtualizada);
-                        LivroParaCompra livroParaCompraAtualizado = new LivroParaCompra(livroParaCompra.getLivro(), quantidadeAtualizada);
-                        livroParaCompraMap.put(livroParaCompraAtualizado.getLivro().get().getTitulo(), livroParaCompraAtualizado);
+                        livroParaCompraMap.put(livroParaCompra.getLivro().get().getTitulo(), livroParaCompra);
                     }
                 }
+            }
+            livroParaCompraMap.put(livroParaCompra.getLivro().get().getTitulo(), livroParaCompra);
         }
-        livroParaCompraMap.put(livroParaCompra.getLivro().get().getTitulo(), livroParaCompra);
     }
     }

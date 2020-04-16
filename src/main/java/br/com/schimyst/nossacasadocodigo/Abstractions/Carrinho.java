@@ -47,6 +47,8 @@ public class Carrinho {
                 }
             }
             livroParaCompraMap.put(livroParaCompra.getLivro().get().getTitulo(), livroParaCompra);
+        } else {
+            throw new IllegalArgumentException("Você precisa colocar um livro que exista na lista!");
         }
     }
     }

@@ -19,21 +19,33 @@ public class Carrinho {
     }
 
     public BigDecimal calculaTotalPagamento() {
-        for(Map.Entry<String, LivroParaCompra> livroParaCompraEntry : livroParaCompraMap.entrySet()) {
-            if(livroParaCompraEntry.getValue().getQuantidade() > 1) {
-                BigDecimal quantidade = BigDecimal.valueOf(livroParaCompraEntry.getValue().getQuantidade());
-                total = total.add(livroParaCompraEntry.getValue().getLivro().get().getPreco().multiply(quantidade));
-            } else if(livroParaCompraEntry.getValue().getQuantidade() < 1) {
+        for(Map.Entry<String, LivroParaCompra> livroParaCompra : livroParaCompraMap.entrySet()) {
+            int intQuantidade = livroParaCompra.getValue().getQuantidade();
+            BigDecimal bigDecimalQuantidade = BigDecimal.valueOf(intQuantidade);
+            if(intQuantidade > 1) {
+                total = total.add(livroParaCompra.getValue().getLivro().get().getPreco().multiply(bigDecimalQuantidade));
+            } else if(intQuantidade < 1) {
                 throw new IllegalArgumentException("A quantidade do livro para compra deve ser de no mínimo 1 livro!");
             }
             else {
-                total = total.add(livroParaCompraEntry.getValue().getLivro().get().getPreco());
+                total = total.add(livroParaCompra.getValue().getLivro().get().getPreco());
             }
         }
         return total;
     }
 
     public void adicionaNoCarrinho(LivroParaCompra livroParaCompra) {
+        for(Map.Entry<String, LivroParaCompra> livroParaCompraEntry : livroParaCompraMap.entrySet()) {
+                if(livroParaCompraMap.containsKey(livroParaCompra.getLivro().get().getTitulo())) {
+                    int quantidade = livroParaCompra.getQuantidade();
+                    if(livroParaCompra.equals(livroParaCompraEntry.getValue())) {
+                        int quantidadeAtualizada = livroParaCompraEntry.getValue().getQuantidade() + quantidade;
+                        livroParaCompra.setQuantidade(quantidadeAtualizada);
+                        LivroParaCompra livroParaCompraAtualizado = new LivroParaCompra(livroParaCompra.getLivro(), quantidadeAtualizada);
+                        livroParaCompraMap.put(livroParaCompraAtualizado.getLivro().get().getTitulo(), livroParaCompraAtualizado);
+                    }
+                }
+        }
         livroParaCompraMap.put(livroParaCompra.getLivro().get().getTitulo(), livroParaCompra);
     }
-}
+    }
